@@ -10,6 +10,12 @@
 // +----------------------------------------------------------------------
 
 namespace app\index\controller;
+use app\cms\model\Activity;
+use app\cms\model\Notice;
+use app\cms\model\Questionnaire;
+use app\cms\model\Sale;
+use app\cms\model\Service;
+use app\cms\model\Shop;
 
 /**
  * 前台首页控制器
@@ -23,6 +29,94 @@ class Index extends Home
         if (config('home_default_module') != 'index') {
             $this->redirect(config('home_default_module'). '/index/index');
         }
-        return '<style type="text/css">*{ padding: 0; margin: 0; } .think_default_text{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p> DolphinPHP V1.0.0<br/><span style="font-size:30px">极速 · 极简 · 极致</span></p></div>';
+        return $this->fetch();
     }
+
+    public function notice()
+    {
+        $notices = Notice::all();
+
+        return $this->fetch('notice',['notices'=>$notices]);
+    }
+
+    public function content($id)
+    {
+        $notice = Notice::get($id);
+        return $this->fetch('notice-detail',['notice'=>$notice]);
+    }
+
+    public function services()
+    {
+        $services = Service::all();
+        return $this->fetch('service',['services'=>$services]);
+    }
+
+    public function service($id)
+    {
+        $service = Service::get($id);
+        return $this->fetch('service-detail',['service'=>$service]);
+    }
+
+    public function shops()
+    {
+        $shops = Shop::all();
+        return $this->fetch('shop',['shops'=>$shops]);
+    }
+
+    public function shop($id)
+    {
+        $shop = Shop::get($id);
+        return $this->fetch('shop-detail',['shop'=>$shop]);
+    }
+
+    public function activitys()
+    {
+        $activitys = Activity::all();
+        return $this->fetch('activity',['activitys'=>$activitys]);
+    }
+
+    public function activity($id)
+    {
+        $activity = Activity::get($id);
+        return $this->fetch('activity-detail',['activity'=>$activity]);
+    }
+
+    public function sale()
+    {
+        $shous = Sale::all(['type'=>1]);
+        $zhus = Sale::all(['type'=>0]);
+
+        return $this->fetch('zushou',['shous'=>$shous,'zhus'=>$zhus]);
+    }
+
+    public function zushou($id)
+    {
+        $sale = Sale::get($id);
+        return $this->fetch('zushou-detail',['sale'=>$sale]);
+    }
+
+    public function fuwu()
+    {
+        return $this->fetch();
+    }
+
+    public function questionnaire()
+    {
+        $questionnaires = Questionnaire::all();
+        return $this->fetch('diaochawenjuan',['questionnaires'=>$questionnaires]);
+    }
+
+    public function guanyu()
+    {
+        return '关于我们';
+    }
+
+    public function yezhurenzheng()
+    {
+        return $this->fetch();
+    }
+
+
+
+
 }

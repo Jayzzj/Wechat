@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
 
-    {block name="page-title"}<title>{$page_title|default='后台'} | {:config('web_site_title')} - DolphinPHP</title>{/block}
+    <!--{block name="page-title"}<title>{$page_title|default='后台'} | {:config('web_site_title')} - ZhouZiJian</title>{/block}-->
+    {block name="page-title"}<title>{$page_title|default='后台'} |  - ZhouZiJian</title>{/block}
 
     <meta name="description" content="{:config('web_site_description')}">
     <meta name="author" content="caiweiming">
@@ -129,7 +130,7 @@
                     <i class="fa fa-times"></i>
                 </button>
                 <span>
-                    <img class="img-avatar img-avatar32" src="__ADMIN_IMG__/avatar.jpg" alt="">
+                    <img class="img-avatar img-avatar32" src="{:get_file_path(session('avatar'))}" alt="">
                     <span class="font-w600 push-10-l">{:session('user_auth.username')}</span>
                 </span>
             </div>
@@ -256,7 +257,8 @@
             <li>
                 <div class="btn-group">
                     <button class="btn btn-default btn-image dropdown-toggle" data-toggle="dropdown" type="button">
-                        <img src="{$Think.session.user_auth.avatar|get_avatar}" alt="{:session('user_auth.username')}">
+                        <!--<img src="{$Think.session.user_auth.avatar|get_avatar}" alt="{:session('user_auth.username')}">-->
+                        <img src="{:get_file_path(session('avatar'))}" alt="{:session('user_auth.username')}">
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -360,10 +362,13 @@
     {empty name="_pop"}
     <footer id="page-footer" class="content-mini content-mini-full font-s12 bg-gray-lighter clearfix">
         <div class="pull-right">
-            Crafted with <i class="fa fa-heart text-city"></i> by <a class="font-w600" href="{:config('dolphin.company_website')}" target="_blank">{:config('dolphin.company_name')}</a>
+            Crafted with <i class="fa fa-heart text-city"></i> by
+            <!--<a class="font-w600" href="{:config('dolphin.company_website')}" target="_blank">{:config('dolphin.company_name')}</a>-->
+            <a class="font-w600" href="{:config('dolphin.company_website')}" target="_blank">123</a>
         </div>
         <div class="pull-left">
-            <a class="font-w600" href="{:config('dolphin.product_website')}" target="_blank">{:config('dolphin.product_name')} {:config('dolphin.product_version')}</a> &copy; <span class="js-year-copy"></span>
+            <!--<a class="font-w600" href="{:config('dolphin.product_website')}" target="_blank">{:config('dolphin.product_name')} {:config('dolphin.product_version')}</a> &copy; <span class="js-year-copy"></span>-->
+            <a class="font-w600" href="{:config('dolphin.product_website')}" target="_blank">1111</a> &copy; <span class="js-year-copy"></span>
         </div>
     </footer>
     {/empty}
